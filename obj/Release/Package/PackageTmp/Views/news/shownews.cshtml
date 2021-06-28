@@ -1,0 +1,90 @@
+﻿@model datalayer.page
+
+@{
+    ViewBag.Title = "shownews";
+    Layout = "~/Views/Shared/_defaultlayout.cshtml";
+}
+
+
+<style>
+    .single-news img,p {
+    
+    max-width:100%;
+    }
+
+</style>
+<ul class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">خانه </a></li>
+    <li class="breadcrumb-item"><a href="/archive">اخبار </a></li>
+    <li class="breadcrumb-item"><a href="#">@Model.pagegroup.grouptitle  </a></li>
+    <li class="breadcrumb-item active">@Model.title </li>
+</ul>
+<section class="single-news border-radius">
+    <header><h2> @Model.title</h2> <span> <i class="fa fa-calendar"></i>  انتشار :  @Model.createdate.toshamsi()</span></header>
+    <article>
+        <p>
+            @Model.shortdescription
+        </p>
+        <div>
+            <img src="~/pageimgs/@Model.imgname" class="thumbnail" style="max-width:100%;margin:10px auto;" />
+        </div>
+        <br />
+        <p>
+            @Html.Raw(Model.text)
+        </p>
+    </article>
+</section>
+@*key words*@
+<div class="keywords border-radius">
+
+    @foreach (var x in Model.tag.Split(','))
+    {
+        <a href="/search?q=@x"> @x </a>
+    }
+</div>
+
+@* section comment started *@
+<section class="comment-layer">
+    <header> <i class="fa fa-comments"></i><h5> دیدگاه کاربران </h5><span> @Model.Pagecomments.Count دیدگاه </span> </header>
+    <header> <i class="fa fa-rub"></i><h5> بازدیدهای این خبر </h5><span> @Model.visit بازدید </span> </header>
+  
+    <ul id="commentlist">
+        @Html.Action("showcomments", "news")
+
+    </ul>
+
+
+    <h6> شما هم دیدگاه خود را ارسال کنید </h6>
+    <form class="comment-form" action="" method="post">
+        <div>
+            <input placeholder=" نام و نام خانوادگی" type="text" id="txtname">
+            <input placeholder=" ایمیل خود را وارد نمایید " type="email" id="txtemail">
+
+        </div>
+        <textarea placeholder=" متن دیدگاه" id="txtcomment"> </textarea>
+        <input value="ثبت دیدگاه ارزشمند شما " type="button" onclick="addcomment()">
+    </form>
+</section>
+
+<script>
+    function addcomment() {
+        $.ajax({
+            url: "/news/addcomment/"+@Model.pageid,
+            type: "Get",
+            data: { name: $("#txtname").val(), email: $("#txtemail").val(), comment: $("#txtcomment").val() }
+
+
+        }).done(function (results) {
+            $("#commentlist").html(results);
+            $("#txtname").val("");
+            $("#txtemail").val("");
+            $("#txtcomment").val("");
+
+        });
+           
+
+
+    }
+
+
+</script>

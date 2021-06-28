@@ -1,0 +1,18 @@
+﻿@model IEnumerable<datalayer.pagecomment>
+
+@foreach (var x in Model)
+{
+    <!-- start each comment -->
+    <li>
+        <img src="/Content/img/thumb.png">
+        <div>
+            <span> @x.name</span>
+            <span> @x.createdate.toshamsi() </span>
+        </div>
+        <p>
+            @x.comment
+        </p>
+        </li>
+    <!-- end each comment -->
+
+}

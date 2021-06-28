@@ -1,0 +1,21 @@
+﻿@model IEnumerable<datalayer.page>   
+ @*last news*@ 
+<section class="last-news-section border-radius margin-top-60">
+    <header><i class="icons icon-doc-2"></i>  <h3>آخرین آخبار ارسالی</h3> </header>
+    <ul>
+        @foreach (var x in Model)
+        {
+            <li>
+                <img class="border-radius" src="~/pageimgs/@x.imgname">
+                <h2> <a href="/news/@x.pageid"> @x.title </a></h2>
+                <p>
+                   @x.shortdescription
+                </p>
+                <span class="date-publish"><i class="fa fa-calendar"></i> انتشار : @x.createdate.toshamsi() </span>
+                <a href="/news/@x.pageid" class="more-link"><i class="icons icon-more"></i></a>
+            </li>
+        }
+
+    </ul>
+</section>
+ @*end last news*@ 

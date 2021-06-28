@@ -1,0 +1,44 @@
+﻿@model datalayer.adminlogin
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>adminlogin</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="/admin/admin/Edit/@Model.loginid">ویرایش </a>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.loginid }) |
+    @Html.ActionLink("Back to List", "Index")
+    <a href="/admin/admin">بازگشت </a>
+</p>

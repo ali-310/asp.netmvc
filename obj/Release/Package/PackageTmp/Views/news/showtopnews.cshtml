@@ -1,0 +1,29 @@
+﻿@model IEnumerable<datalayer.page>
+<section class="last-news-side border-radius">
+    <header><i class="icons icon-star"></i> <h3> پربازدیدترین اخبار </h3></header>
+    <table id="tb">
+        @foreach (var x in Model)
+        {
+        <tr>
+            <td> <h2> <a href="/news/@x.pageid"><b>@x.title</b></a></h2> <br /></td>
+            
+        </tr>
+       
+            <tr>
+                <td>
+                    <img class="border-radius" src="~/pageimgs/@x.imgname" style="max-width:70px;max-height:60px;" />
+                </td>
+
+            </tr>
+            <tr>
+                <td>  <span>انتشار : @x.createdate.toshamsi()</span><hr class="border-radius" /> </td>
+
+
+            </tr>
+
+        }
+
+
+    </table>
+</section>
+

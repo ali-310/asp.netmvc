@@ -1,0 +1,27 @@
+﻿@model IEnumerable<datalayer.page>
+
+ @*slider*@ 
+<div class="news-slider border-radius">
+    <div id="slider-one" class="owl-carousel">
+        @foreach (var x in Model)
+        {
+            @*each item*@
+            <div class="item">
+                <img src="~/pageimgs/@x.imgname">
+                <div class="left-side">
+                    <h2> <a href="/news/@x.pageid">@x.title</a> </h2>
+                    <p>
+                        @x.shortdescription
+                    </p>
+                    <span> <i class="fa fa-calendar"></i> انتشار : @x.createdate.toshamsi()</span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            //end each item
+
+        }
+
+            </div>
+                <a href="/archive" class="news-archive"> <i class="icons icon-doc-1"></i> آرشیو کامل خبرها </a>
+            </div>
+             @*End slider*@

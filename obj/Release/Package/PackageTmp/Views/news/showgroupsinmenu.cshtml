@@ -1,0 +1,13 @@
+﻿@model IEnumerable<datalayer.pagegroup>
+<span>گروه های خبری</span>
+<ul id="tb" style="">
+    @foreach (var x in Model)
+    {
+
+
+
+        <li><a href="/group/@x.groupid/@x.grouptitle">@x.grouptitle</a></li>
+
+
+    }
+</ul>

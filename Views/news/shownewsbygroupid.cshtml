@@ -1,0 +1,36 @@
+﻿@model IEnumerable<datalayer.page>
+@{
+    ViewBag.Title = "shownewsbygroupid";
+    Layout = "~/Views/Shared/_defaultlayout.cshtml";
+}
+<ul class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">خانه </a></li>
+    <li class="breadcrumb-item"><a href="#">اخبار </a></li>
+    <li class="breadcrumb-item active"> @ViewBag.name </li>
+</ul>
+<section class="last-news-section border-radius">
+    <header><i class="icons icon-doc-2"></i>  <h3> آرشیو اخبار @ViewBag.name</h3> </header>
+    <ul>
+        @foreach (var x in Model)
+        {
+            <li>
+                <img class="border-radius" src="~/pageimgs/@x.imgname">
+                <h2> <a href="/news/@x.pageid"> @x.title </a></h2>
+                <p>
+                    @x.shortdescription
+                </p>
+                <span class="date-publish"><i class="fa fa-calendar"></i> انتشار :@x.createdate.toshamsi() </span>
+                <a href="/news/@x.pageid" class="more-link"><i class="icons icon-more"></i></a>
+            </li>
+        }
+
+    </ul>
+</section>
+@*<ul class="pagination">
+    <li><a href="#">1</a></li>
+    <li class="active"><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+</ul>*@
+
